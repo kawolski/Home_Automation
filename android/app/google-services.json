@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "788334668190",
+    "project_id": "home-automation-6e0b2",
+    "storage_bucket": "home-automation-6e0b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:788334668190:android:f3265293dd20b7cd548e8f",
+        "android_client_info": {
+          "package_name": "com.prashantraw.home_automation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "788334668190-50g0b49ar54vjhpa373knrqc3csafpcb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpuFYPBkTMl1DekUr8xUnUvPEHWhzosrM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "788334668190-50g0b49ar54vjhpa373knrqc3csafpcb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
