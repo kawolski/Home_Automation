@@ -3,6 +3,10 @@ import 'package:home_automation/models/user.dart';
 import 'package:provider/provider.dart';
 
 class UserCard extends StatefulWidget {
+  final String subtext;
+
+  UserCard({this.subtext});
+
   @override
   _UserCardState createState() => _UserCardState();
 }
@@ -23,7 +27,7 @@ class _UserCardState extends State<UserCard> {
             backgroundImage: AssetImage('assets/stock_profile.png'),
           ),
           title: Text(data.userName ?? ''),
-          subtitle: Text('Working on details'),
+          subtitle: Text(widget.subtext),
         ),
       ),
     );

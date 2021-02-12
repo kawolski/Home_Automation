@@ -11,5 +11,7 @@ class UserData {
 
   final String userName;
 
-  UserData({this.uid, this.userName});
+  String hid;
+
+  UserData({this.uid, this.userName, this.hid = ''});
 }
