@@ -26,7 +26,7 @@ class _UserCardState extends State<UserCard> {
             radius: 25,
             backgroundImage: AssetImage('assets/stock_profile.png'),
           ),
-          title: Text(data.userName ?? ''),
+          title: Text(data.userName),
           subtitle: Text(widget.subtext),
         ),
       ),
