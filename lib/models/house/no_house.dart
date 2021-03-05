@@ -21,14 +21,21 @@ class _NoHouseState extends State<NoHouse> {
     final _houseAuth = HouseAuth(uid: user.uid);
     final _formkey = GlobalKey<FormState>();
     String hName = '';
+    String hID = '';
 
     void loadHouse() async {
-      House result = await _houseAuth.getMyHouse(hName);
-      if (result == null) {
-        print('Error Loading');
-      } else {
-        print('Got Results');
+      if (hID != null) {
+        print('sharing house');
+        House result = await _houseAuth.shareHouse(hID);
         print(result);
+      } else {
+        House result = await _houseAuth.getMyHouse(hName);
+        if (result == null) {
+          print('Error Loading');
+        } else {
+          print('Got Results');
+          print(result);
+        }
       }
     }
 
@@ -74,6 +81,23 @@ class _NoHouseState extends State<NoHouse> {
                                     },
                                   ),
                                   SizedBox(height: 20),
+                                  Text("OR"),
+                                  SizedBox(height: 20),
+                                  TextFormField(
+                                    decoration: textInputDecoration.copyWith(
+                                        hintText: 'House ID'),
+                                    validator: (val) => val.isEmpty
+                                        ? 'Please Enter a Name'
+                                        : null,
+                                    onChanged: (val) {
+                                      setState(() {
+                                        hID = val;
+                                      });
+                                    },
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
                                   ElevatedButton(
                                     style: ButtonStyle(
                                       backgroundColor:
@@ -82,10 +106,10 @@ class _NoHouseState extends State<NoHouse> {
                                     ),
                                     child: Text('Awaken'),
                                     onPressed: () {
-                                      if (_formkey.currentState.validate()) {
-                                        loadHouse();
-                                        Navigator.pop(context);
-                                      }
+                                      // if (_formkey.currentState.validate()) {
+                                      loadHouse();
+                                      Navigator.pop(context);
+                                      // }
                                     },
                                   ),
                                 ],

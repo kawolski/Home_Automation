@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:home_automation/models/house/house.dart';
-import 'package:home_automation/models/house/house_auth.dart';
-import 'package:home_automation/models/house/no_house.dart';
 import 'package:home_automation/models/user.dart';
-import 'package:home_automation/screens/home/drawer_functions.dart';
+import 'package:home_automation/screens/add_devices/add_devices.dart';
 import 'package:home_automation/screens/home/drawer_tile.dart';
-import 'package:home_automation/screens/home/home_projector.dart';
 import 'package:home_automation/screens/home/select.dart';
-import 'package:home_automation/screens/home/user_card.dart';
 import 'package:home_automation/screens/settings/settings.dart';
 import 'package:home_automation/services/auth.dart';
 import 'package:home_automation/services/database.dart';
-import 'package:home_automation/shared/loading.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
@@ -26,9 +20,10 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final user = Provider.of<CustomUser>(context);
 
-    final _houseAuth = HouseAuth(uid: user.uid);
-    final DrawerFunctions df = DrawerFunctions();
-    bool isHouse = false;
+    // final _houseAuth = HouseAuth(uid: user.uid);
+    // final DrawerFunctions df = DrawerFunctions();
+    // final realDB = RealDeviceData(uid: user.uid);
+    // bool isHouse = false;
 
     return StreamProvider<UserData>.value(
       value: DatabaseService(uid: user.uid).userData,
@@ -36,6 +31,23 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.blue[200],
         appBar: AppBar(
           backgroundColor: Colors.blueAccent,
+          actions: <Widget>[
+            TextButton.icon(
+              icon: Icon(
+                Icons.refresh,
+                color: Colors.white,
+              ),
+              label: Text(
+                'Reload',
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () {
+                setState(() {
+                  print('Reloaded');
+                });
+              },
+            )
+          ],
         ),
         body: Select(),
         drawer: Drawer(
@@ -52,8 +64,16 @@ class _HomeState extends State<Home> {
                   ),
                 ]),
               ),
+              //  Add New Device
               DrawerTile(
-                  icon: Icons.add, text: "Add New Device", function: df.test),
+                  icon: Icons.add,
+                  text: "Add New Device",
+                  function: () {
+                    Navigator.pop(context);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AddDevices()));
+                  }),
+              //  Settings
               DrawerTile(
                   icon: Icons.settings,
                   text: "Settings",
@@ -62,6 +82,7 @@ class _HomeState extends State<Home> {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Settings()));
                   }),
+              //  Logout
               DrawerTile(
                   icon: Icons.perm_identity_rounded,
                   text: "Leave",

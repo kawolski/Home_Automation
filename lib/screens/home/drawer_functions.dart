@@ -1,8 +1,16 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 class DrawerFunctions {
+  final String uid;
+
+  DrawerFunctions({this.uid});
+
   void test() {
     print("Test Successfull");
+  }
+
+  void addDevice() {
+    // final realDB = RealDeviceData(uid: uid);
+    // // Make Form
+    // Devices devices;
+    // realDB.createData("devName");
   }
 }
